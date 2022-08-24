@@ -17,28 +17,30 @@ def getPitch(x, fs, winLen=0.02):
     return f0,voiced_flag, tempogram
 
 def getXy(files, labels, scale_audio=False, onlySingleDigit=False):
-
     X,y =[],[]
     for file in tqdm(files):
-        print (file)
-        fileID = file.split('/')[-1]
-        file_name = file.split('/')[-1]
-        yi = labels
-        fs = None # if None, fs would be 22050
-        x, fs = librosa.load(file,sr=fs)
-        if scale_audio: x = x/np.max(np.abs(x))
-        f0, voiced_flag, tempogram = getPitch(x,fs,winLen=0.02)
+        try:
+            fileID = file.split('/')[-1]
+            file_name = file.split('/')[-1]
+            yi = labels
+            fs = None # if None, fs would be 22050
+            x, fs = librosa.load(file,sr=fs)
+            if scale_audio: x = x/np.max(np.abs(x))
+            f0, voiced_flag, tempogram = getPitch(x,fs,winLen=0.02)
 
-        power = np.sum(x**2)/len(x)
-        pitch_mean = np.nanmean(f0) if np.mean(np.isnan(f0))<1 else 0
-        pitch_std  = np.nanstd(f0) if np.mean(np.isnan(f0))<1 else 0
-        voiced_fr = np.mean(voiced_flag)
-        tempogram = np.nanmean(tempogram) if np.mean(np.isnan(tempogram))<1 else 0
+            power = np.sum(x**2)/len(x)
+            pitch_mean = np.nanmean(f0) if np.mean(np.isnan(f0))<1 else 0
+            pitch_std  = np.nanstd(f0) if np.mean(np.isnan(f0))<1 else 0
+            voiced_fr = np.mean(voiced_flag)
+            tempogram = np.nanmean(tempogram) if np.mean(np.isnan(tempogram))<1 else 0
 
-        xi = [power,pitch_mean,pitch_std,voiced_fr, tempogram]
-        X.append(xi)
-        y.append(yi)
-    
+            xi = [power,pitch_mean,pitch_std,voiced_fr, tempogram]
+            X.append(xi)
+            y.append(yi)
+        except Exception as e:
+            print (file)
+            print (str(e))
+
     return np.array(X),np.array(y)
 
 
