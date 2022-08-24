@@ -20,6 +20,7 @@ def getXy(files, labels, scale_audio=False, onlySingleDigit=False):
 
     X,y =[],[]
     for file in tqdm(files):
+        print (file)
         fileID = file.split('/')[-1]
         file_name = file.split('/')[-1]
         yi = labels
@@ -48,11 +49,11 @@ def preprocessing(data_path):
     sample_path = data_path + '/raw/Starwars/*.wav'
     starwars_files = glob.glob(sample_path)
 
-    print ('Processing Harry audios into features')
-    X_harry, y_harry = getXy(harry_files, labels = "Harry", scale_audio=True, onlySingleDigit=True)
-
     print ('Processing Starwars audios into features')
     X_starwars, y_starwars = getXy(starwars_files, labels = "Starwars", scale_audio=True, onlySingleDigit=True)
+
+    print ('Processing Harry audios into features')
+    X_harry, y_harry = getXy(harry_files, labels = "Harry", scale_audio=True, onlySingleDigit=True)
 
     X = np.concatenate((X_harry, X_starwars), axis = 0)
     y = np.concatenate((y_harry, y_starwars), axis = 0)
@@ -63,9 +64,10 @@ def preprocessing(data_path):
     features_df = pd.DataFrame(data = X, columns = ['power','pitch_mean','pitch_sd','voiced_fr', 'tempogram'])
     features_df['label'] = y
 
-    features_df.to_csv("features.csv", index = False)
+    features_df.to_csv(data_path + '/features/features.csv', index = False)
 
     return features_df
 
 
-
+path = 'C:/Users/Usman/dvc-mlflow-classification-workflow/data'
+print (path)

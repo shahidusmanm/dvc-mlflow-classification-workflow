@@ -1,33 +1,26 @@
 from sklearn import train_test_split
 import pandas as pd
 
+def blind_holdout (features_df):
+    
+    blind_holdout_df = features_df.sample(frac = 0.15)
+    features_df = features_df.drop(blind_holdout_df.index)
+    
+    print("\n15% of the data has been stored as the Blind Holdout. It is available in the /data/features folder.")
 
-def simple_split (features_df, train, test, val):
-
-    if val == 0:
-        train_df = df.sample(frac = train)
-        
-        # Creating dataframe with
-        # rest of the 50% values
-        test_df = df.drop(train.index)
-        
-        print("\nTraining DataFrame:")
-        print(train)
-        
-        print("\nTesting DataFrame:")
-        print(rest_part_50)
+    return features_df
 
 
-        # Creating a dataframe with 50%
-# values of original dataframe
-part_50 = df.sample(frac = 0.5)
- 
-# Creating dataframe with
-# rest of the 50% values
-rest_part_50 = df.drop(part_50.index)
- 
-print("\n50% of the given DataFrame:")
-print(part_50)
- 
-print("\nrest 50% of the given DataFrame:")
-print(rest_part_50)
+def simple_split (features_df, train_ratio):
+
+    features_df = blind_holdout (features_df)
+
+    #Creating a train/test split
+    train_df = features_df.sample(frac = train_ratio)
+    
+    # Creating dataframe with
+    # rest of the 50% values
+    test_df = features_df.drop(train_df.index)
+
+    return train_df, test_df
+
