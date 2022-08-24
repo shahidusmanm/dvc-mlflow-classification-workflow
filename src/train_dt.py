@@ -5,7 +5,7 @@ from sklearn.svm import SVC
 
 
 def dt (max_depth):
-    return DecisionTreeClassifier(max_depth = max_depth)
+    return DecisionTreeClassifier()
 
 def rf ():
     return RandomForestClassifier()
@@ -14,11 +14,11 @@ def svm ():
     return SVC()
 
 
-def train_model (model_type, train_df, test_df, max_depth):
+def train_model (model_type, train_df, test_df):
     mlflow.sklearn.autolog()
 
     if model_type == 'dt':
-        model = dt(max_depth=max_depth)
+        model = dt()
     elif model_type == 'rf':
         model = rf()
     elif model_type == 'svm':
