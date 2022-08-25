@@ -6,7 +6,7 @@ def init_experiment ():
     # Create an experiment name, which must be unique and case sensitive
     if mlflow.get_experiment_by_name(config.experiment_name) == None: 
         experiment_id = mlflow.create_experiment(
-            "Workflow Experiment ",
+            config.experiment_name,
             artifact_location=Path.cwd().joinpath("mlruns").as_uri(),
             tags={"version": "v1", "priority": "P1"},
         )
@@ -17,9 +17,16 @@ def init_experiment ():
         print("Tags: {}".format(experiment.tags))
         print("Lifecycle_stage: {}".format(experiment.lifecycle_stage))
 
-    experiment = mlflow.set_experiment(config.experiment_name)
+    mlflow.set_tracking_uri("")
+    tracking_uri = mlflow.get_tracking_uri()
+    print("Current tracking uri: {}".format(tracking_uri))
 
     return config.experiment_name
+
+
+def start_experiment ():
+    experiment = mlflow.set_experiment(config.experiment_name)
+
 
 if __name__ == "__main__":
     #Main execution

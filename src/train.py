@@ -2,7 +2,7 @@ import mlflow
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
-import config
+import config, init
 import pandas as pd
 
 def dt (max_depth):
@@ -45,10 +45,11 @@ def train_model (model_type, train_df, test_df, max_depth):
     mlflow.end_run()
     
     return model, run_id
-    
+
 
 if __name__ == "__main__":
     #Main Execution
+    init.start_experiment()
     train_df = pd.read_csv(config.root_dir + 'src/feature_store/train.csv')
     test_df = pd.read_csv(config.root_dir + 'src/feature_store/test.csv')
 
