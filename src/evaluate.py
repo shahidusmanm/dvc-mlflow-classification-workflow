@@ -15,13 +15,13 @@ def evaluate_validation (run_id, holdout_data):
             evaluators=["default"],
         )
 
+if __name__ == "__main__":
+    if config.final_model:
+        with open(config.root_dir + "src/feature_store/loggedmodel.txt", "r") as file:
+            run_id = file.read().rstrip('\n')
+            
+        holdout_df = pd.read_csv(config.root_dir + 'src/feature_store/blind_holdout.csv')
+        holdout_df['label'].replace(['Harry'], 0)
+        holdout_df['label'].replace(['Starwars'], 1)
 
-if config.final_model:
-    with open(config.root_dir + "src/feature_store/loggedmodel.txt", "r") as file:
-        run_id = file.read().rstrip('\n')
-        
-    holdout_df = pd.read_csv(config.root_dir + 'src/feature_store/blind_holdout.csv')
-    holdout_df['label'].replace(['Harry'], 0)
-    holdout_df['label'].replace(['Starwars'], 1)
-
-    evaluate_validation (run_id, holdout_df)
+        evaluate_validation (run_id, holdout_df)

@@ -71,6 +71,8 @@ def preprocessing(data_path):
 
     return features_df
 
-#Main Execution
-data_path = config.root_dir + 'data'
-preprocessing (data_path)
+
+if __name__ == "__main__":
+    #Main Execution
+    data_path = config.root_dir + 'data'
+    preprocessing (data_path)

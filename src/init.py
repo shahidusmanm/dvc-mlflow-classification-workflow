@@ -21,5 +21,6 @@ def init_experiment ():
 
     return config.experiment_name
 
-#Main execution
-init_experiment()
+if __name__ == "__main__":
+    #Main execution
+    init_experiment()

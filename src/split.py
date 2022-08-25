@@ -25,6 +25,8 @@ def simple_split (features_df, train_ratio):
 
     return train_df, test_df
 
-#Main Execution
-df = pd.read_csv(config.root_dir + 'data/features/features.csv')
-simple_split(df, config.train_ratio)
+
+if __name__ == "__main__":
+    #Main Execution
+    df = pd.read_csv(config.root_dir + 'data/features/features.csv')
+    simple_split(df, config.train_ratio)

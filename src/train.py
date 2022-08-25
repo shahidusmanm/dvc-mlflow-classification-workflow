@@ -45,20 +45,20 @@ def train_model (model_type, train_df, test_df, max_depth):
     mlflow.end_run()
     
     return model, run_id
-
-
-
-#Main Execution
-train_df = pd.read_csv(config.root_dir + 'src/feature_store/train.csv')
-test_df = pd.read_csv(config.root_dir + 'src/feature_store/test.csv')
-
-if config.final_model:
-    train_df = pd.concat([train_df, test_df], ignore_index=True, sort=False)
-    train_model (config.model, train_df, test_df, config.max_depth)
-
-else:
-    #Use this function to do model exploration. DVC will automatically track any 
-    #changes to this file and will only run this stage on subsequent pipeline runs.
-    #Current values are provided as placeholders.
     
-    train_model ('dt', train_df, test_df, 5)
+
+if __name__ == "__main__":
+    #Main Execution
+    train_df = pd.read_csv(config.root_dir + 'src/feature_store/train.csv')
+    test_df = pd.read_csv(config.root_dir + 'src/feature_store/test.csv')
+
+    if config.final_model:
+        train_df = pd.concat([train_df, test_df], ignore_index=True, sort=False)
+        train_model (config.model, train_df, test_df, config.max_depth)
+
+    else:
+        #Use this function to do model exploration. DVC will automatically track any 
+        #changes to this file and will only run this stage on subsequent pipeline runs.
+        #Current values are provided as placeholders.
+        
+        train_model ('dt', train_df, test_df, 5)
