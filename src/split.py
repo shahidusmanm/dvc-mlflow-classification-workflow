@@ -10,7 +10,7 @@ def blind_holdout (features_df):
     blind_holdout_df = features_df.sample(frac = 0.15)
     features_df = features_df.drop(blind_holdout_df.index)
     blind_holdout_df.to_csv("feature_store/blind_holdout.csv", index = False)
-    print("\n15% of the data has been stored as the Blind Holdout. It is available in the /src/feature_store folder.")
+    print("\n15% of the data has been stored as the Blind Holdout. It is available in /src/feature_store.")
     
     return features_df
 

@@ -8,23 +8,23 @@ import pandas as pd
 def dt (max_depth):
     return DecisionTreeClassifier(max_depth = max_depth)
 
-def rf ():
-    return RandomForestClassifier()
+def rf (n_estimators):
+    return RandomForestClassifier(n_estimators = n_estimators)
 
-def svm ():
-    return SVC()
+def svm (C):
+    return SVC(C = C)
 
 
-def train_model (model_type, train_df, test_df, max_depth):
+def train_model (model_type, train_df, test_df, hyperparam):
     mlflow.start_run()
     mlflow.sklearn.autolog()
 
     if model_type == 'dt':
-        model = dt(max_depth=max_depth)
+        model = dt(hyperparam)
     elif model_type == 'rf':
-        model = rf()
+        model = rf(hyperparam)
     elif model_type == 'svm':
-        model = svm()
+        model = svm(hyperparam)
     else:
         print ('Unsupported Model; Please choose from dt, rf or svm')
     

@@ -1,0 +1,21 @@
+artifact_path: model
+flavors:
+  python_function:
+    env: conda.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    python_version: 3.10.4
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.1.1
+mlflow_version: 1.27.0
+model_uuid: 22de12fb1156436c828b9ad8568fc62b
+run_id: 6deb1085035e4604b1e4a89cd90a943f
+signature:
+  inputs: '[{"name": "power", "type": "double"}, {"name": "pitch_mean", "type": "double"},
+    {"name": "pitch_sd", "type": "double"}, {"name": "voiced_fr", "type": "double"},
+    {"name": "tempogram", "type": "double"}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "object", "shape": [-1]}}]'
+utc_time_created: '2022-08-26 17:09:25.722724'
