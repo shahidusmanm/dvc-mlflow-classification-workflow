@@ -1,0 +1,33 @@
+stages:
+  init:
+    cmd: src/init.py
+    deps:
+    - python
+    - src/init.py
+  featurize:
+    cmd: python src/preprocessing.py
+    deps:
+    - data/raw
+    - src/preprocessing.py
+    outs:
+    - data/features
+  split:
+    cmd: python src/split.py
+    deps:
+    - data/features
+    - src/split.py
+    outs:
+    - src/feature_store
+  train:
+    cmd: python src/train.py
+    deps:
+    - src/feature_store
+    - src/train.py
+    outs:
+    - src/mlruns
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - src/feature_store
+    - src/evaluate.py
+    - src/mlruns

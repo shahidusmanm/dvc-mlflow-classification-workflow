@@ -1,5 +1,6 @@
 import pandas as pd
 import os 
+import config
 
 def blind_holdout (features_df):
     
@@ -21,6 +22,11 @@ def simple_split (features_df, train_ratio):
     test_df = features_df.drop(train_df.index)
     train_df.to_csv("feature_store/train.csv", index = False)
     test_df.to_csv("feature_store/test.csv", index = False)
-    
+
     return train_df, test_df
 
+
+if __name__ == "__main__":
+    #Main Execution
+    df = pd.read_csv(config.root_dir + 'data/features/features.csv')
+    simple_split(df, config.train_ratio)

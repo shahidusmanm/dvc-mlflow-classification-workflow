@@ -4,6 +4,7 @@ import os
 import glob, librosa
 import IPython.display as ipd
 from tqdm import tqdm
+import config
 
 
 def getPitch(x, fs, winLen=0.02):
@@ -71,5 +72,7 @@ def preprocessing(data_path):
     return features_df
 
 
-path = 'C:/Users/Usman/dvc-mlflow-classification-workflow/data'
-print (path)
+if __name__ == "__main__":
+    #Main Execution
+    data_path = config.root_dir + 'data'
+    preprocessing (data_path)
