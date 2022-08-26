@@ -2,7 +2,8 @@
 root_dir = 'C:/Users/Usman/dvc-mlflow-classification-workflow/'
 
 #MLFlow Experiment Config
-experiment_name = 'Automated Script Experiment 2'
+experiment_name = 'MLFlow'
+tracking_folder = 'C:/Users/Usman/dvc-mlflow-classification-workflow/src/mlruns'
 
 #Train/Test Split config
 #15% of the Original Data is always set aside as the Blind Holdout Dataset. It is used in src/evaluate.py

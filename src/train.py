@@ -49,6 +49,7 @@ def train_model (model_type, train_df, test_df, max_depth):
 
 if __name__ == "__main__":
     #Main Execution
+    init.init_experiment()
     init.start_experiment()
     train_df = pd.read_csv(config.root_dir + 'src/feature_store/train.csv')
     test_df = pd.read_csv(config.root_dir + 'src/feature_store/test.csv')
