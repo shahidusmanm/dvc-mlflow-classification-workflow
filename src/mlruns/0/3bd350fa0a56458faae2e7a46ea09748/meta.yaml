@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Usman/dvc-mlflow-classification-workflow/src/mlruns/0/3bd350fa0a56458faae2e7a46ea09748/artifacts
+end_time: 1661533412238
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 3bd350fa0a56458faae2e7a46ea09748
+run_uuid: 3bd350fa0a56458faae2e7a46ea09748
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1661533405900
+status: 3
+tags: []
+user_id: Usman
