@@ -1,5 +1,4 @@
 # DVC & MLFlow Classification Workflow
-Workflow for my MSc. Thesis
 
 ### Set up the environment
 
@@ -54,5 +53,15 @@ $  dvc repro
 You can visualize the end-to-end pipeline configured by running
 
 ```
-$   dvg dag
+$  dvg dag
 ```
+
+### View MLFlow Tracking UI
+
+The main benefit of this workflow is the ability to track model artifacts and analyze them via an easy-to-use interface. These artifacts are recorded and tracked by MLFlow and can be analyzed by their Web UI. To run the UI server;
+
+```
+$  cd src
+$  mlflow ui
+```
+**Note:** You must be in the `src` directory before you launch the UI because all the MLFlow data is stored in `src/mlruns`. Future releases of this workflow will have the functionality to store MLFlow artifacts to a custom location.

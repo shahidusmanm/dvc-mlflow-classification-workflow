@@ -31,3 +31,8 @@ stages:
     - src/feature_store
     - src/evaluate.py
     - src/mlruns
+  deploy:
+    cmd: python src/deploy.py
+    deps:
+    - src/evaluate.py
+    - src/mlruns
